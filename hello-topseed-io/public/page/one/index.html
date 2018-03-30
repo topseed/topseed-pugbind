@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><link rel="icon" href="/favicon.ico"><style type="text/css">.ui.menu {
+	height: 3.5em !important;
+}
+
+.pusher {
+	margin-top: 3.5em;
+}
+
+@media only screen and (min-width: 701px) {
+	.toc.item {
+		display: none !important;
+	}
+}</style><title>Page One</title><style>html { visibility: hidden; }
+</style></head><body><!--IE--><script></script><script src="/assets/js/ts-load.js"></script><!--side menu shell--><div class="ui fixed vertical inverted sidebar menu"><a class="active item" href="/page/one"> <i class="left icon star"></i>One</a><a class="item" href="/page/two"><i class="left icon book"></i>Two</a></div><div class="ui fixed inverted menu"><div class="ui container"><a class="toc item"><i class="sidebar icon"></i></a><a class="header item" href="/page/one">One</a><a class="item computer_only" href="/page/two">Two</a></div><div class="right menu"><a class="item" href="https://github.com/topseed/topseed-hello">Git</a></div></div><!--container--><div class="pusher"><!-- pushed state--><p></p><div class="ui text container"><p>Hello Page One!</p></div><script>TS.onAppReady(UIinit)
+function UIinit() {
+	console.log('page 1 script')
+}</script></div><script>console.log('shell')
+Promise.all([
+	TS.load('//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
+	, TS.load('//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
+	, TS.load('//cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js')
+])
+.then(function(success){
+	console.log('done loading libs')
+	window['SITE'] = new signals.Signal() //site events
+	return Promise.all([
+		TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css')
+		, TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js')
+		, TS.load('//cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js')
+	])
+}).then(function(){
+	console.log('page loaded')
+	$('.ui.sidebar').sidebar('attach events', '.toc.item');
+		setTimeout(function () { // ha ha !!:
+			document.getElementsByTagName('html')[0].style.visibility = 'visible'
+			console.log('style ready')
+		}, 10)
+	WebFont.load({	google: {
+			families: ['Open Sans:300']
+		}
+	})
+	TS.signalAppReady()
+})</script></body></html>

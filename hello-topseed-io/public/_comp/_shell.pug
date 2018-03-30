@@ -1,0 +1,48 @@
+doctype html
+html
+	head
+		include _header
+		block head
+		style.
+			html { visibility: hidden; }
+
+	body
+		//IE
+		script.
+		script(src='/assets/js/ts-load.js')
+		//side menu shell
+		include _top
+		//container
+		.pusher
+
+			// pushed state
+			block main
+
+		script.
+			console.log('shell')
+			Promise.all([
+				TS.load('//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
+				, TS.load('//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
+				, TS.load('//cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js')
+				, TS.load('//cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js') //for router TBD
+			])
+			.then(function(success){
+				console.log('done loading libs')
+				window['SITE'] = new signals.Signal() //site events
+				return Promise.all([
+					TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css')
+					, TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js')
+				])
+			}).then(function(){
+				console.log('page loaded')
+				$('.ui.sidebar').sidebar('attach events', '.toc.item');
+					setTimeout(function () { // ha ha !!:
+						document.getElementsByTagName('html')[0].style.visibility = 'visible'
+						console.log('style ready')
+					}, 10)
+				WebFont.load({	google: {
+						families: ['Open Sans:300']
+					}
+				})
+				TS.signalAppReady()
+			})

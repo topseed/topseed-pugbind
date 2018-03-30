@@ -1,0 +1,16 @@
+extends ../../_comp/_shell
+
+block head
+	title Page One
+
+block main
+	p
+	.ui.text.container
+		p Hello Page One!
+
+	script.
+		TS.onAppReady(UIinit)
+		function UIinit() {
+			console.log('page 1 script')
+		}
+
