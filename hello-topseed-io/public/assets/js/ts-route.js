@@ -66,6 +66,7 @@ var TT = {
 
 	, handle : function(foo) {
 		//?? flyd.on(foo, TT.smoothPg)
+		TT.smoothPg.add(foo)
 	}
 
 	, startAct: function (toHref, fromHref, back) {
@@ -145,5 +146,3 @@ var TT = {
 	}
 
 }
-
-TT.smoothPg.add(TT.handle)
