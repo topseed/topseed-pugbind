@@ -39,10 +39,10 @@ html
 					setTimeout(function () { // ha ha !!:
 						document.getElementsByTagName('html')[0].style.visibility = 'visible'
 						console.log('style ready')
+						TS.signalAppReady()
 					}, 10)
 				WebFont.load({	google: {
 						families: ['Open Sans:300']
 					}
 				})
-				TS.signalAppReady()
 			})

@@ -56,7 +56,7 @@ var TS = { //class:
 	}
 
 	, onAppReady: function(pinit) {
-		if (TS.appReady  && 'undefined' != typeof jQuery) { // wait for libs loaded.
+		if (TS.appReady) { // wait for libs loaded.
 			console.log('app-ready!')
 			pinit()
 		} else {
