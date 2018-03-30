@@ -32,6 +32,7 @@ html
 				return Promise.all([
 					TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css')
 					, TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js')
+					, TS.load('/assets/js/ts-route.js')
 				])
 			}).then(function(){
 				console.log('page loaded')
@@ -40,6 +41,20 @@ html
 						document.getElementsByTagName('html')[0].style.visibility = 'visible'
 						console.log('style ready')
 						TS.signalAppReady()
+
+						TT.ScontentID ='.pusher'
+						TT.handle(function(evt) {
+							if (TT.PRE == evt.typ)  {//start
+								//console.log(evt.$new)
+								//$('#content-wrapper').fadeTo(100,.2)
+								//on nav, close sidebar if visible
+								$('.ui.sidebar.visible').sidebar('toggle')
+							}
+							if (TT.PAGE == evt.typ)  {//new pg loaded
+								$(TT.ScontentID).html(evt.$new)
+								//$('#content-wrapper').fadeTo(100,1)
+							}
+						})
 					}, 10)
 				WebFont.load({	google: {
 						families: ['Open Sans:300']
