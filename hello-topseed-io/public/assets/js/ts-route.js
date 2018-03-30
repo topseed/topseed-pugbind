@@ -62,10 +62,9 @@ var TT = {
 	, PAGE : '_new-page'
 	, _setupStarted: new Date().getTime()
 	, _actStarted : new Date().getTime()
-	, smoothPg: new signals.Signal() //flyd.stream()
+	, smoothPg: new signals.Signal()
 
 	, handle : function(foo) {
-		//?? flyd.on(foo, TT.smoothPg)
 		TT.smoothPg.add(foo)
 	}
 
