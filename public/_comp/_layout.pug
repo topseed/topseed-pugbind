@@ -18,15 +18,7 @@ html
 
 		script.
 			console.log('layout')
-			.then(function(success){
-				console.log('done loading libs')
-				window['SITE'] = new signals.Signal() //site events
-				return Promise.all([
-					TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css')
-					, TS.load('//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js')
-				])
-			}).then(function(){
-				console.log('page loaded')
+			loadjs.ready('semaB', function() {
 				$('.ui.sidebar').sidebar('attach events', '.toc.item');
 					setTimeout(function () { // ha ha !!:
 						document.getElementsByTagName('html')[0].style.visibility = 'visible'
