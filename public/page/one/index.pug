@@ -1,11 +1,15 @@
-extends ../../_comp/_layout
+extends /_comp/_layout
 
 block head
-	title Page One
+	title #{title}
 
 block main
 	p
 	.ui.text.container
 		include _pcomp.pug
 
+	script.
+		loadjs.ready('style', function () {
+			console.log('page 1 script here')
+		})
 

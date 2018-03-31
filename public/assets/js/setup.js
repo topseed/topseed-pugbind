@@ -10,35 +10,38 @@ function require(bundleIds, callbackFn) {
 }
 
 
-// this needs an ugly code fix, like a bundleReadyIE before PRELoadB.done() fires - this is not deterministic:
+// polyfills
 if (!window.Promise) {
-	var js = document.createElement('script'); js.src='//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'; document['head'].appendChild(js)
+	/* load bundle 'promise' */
+	loadjs(['//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'], 'promise')
 }
+else loadjs.done('promise') /* we already have it */
 
 if (!window.fetch) {
-	var js = document.createElement('script'); js.src='//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'; document['head'].appendChild(js)
+	loadjs(['//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'], 'fetch')
 }
+else loadjs.done('fetch')
 
-
+/* load bundle 'core' */
 loadjs([
 	'//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js',
 	'//cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
-], 'PRELoadBx123', {
+], 'core' /* bundle ID */, {
 	async: false //required due to loadjs bug with bundles
 })
-loadjs.ready('PRELoadBx123', function () {
+
+// ready = "when done with bundle(s)"
+loadjs.ready(['core','promise','fetch'], function () {
 	window['SITE'] = new signals.Signal() //site events
-	console.log('site setup')
-	loadjs.done('PRELoadB') // this is ready
+	console.log('site done')
+	loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
 })
 
-
-// ready
-loadjs.ready('PRELoadB', function() {
+loadjs.ready('site', function() {
 	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css',
 	'//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js',
 	'//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-	], 'semaB')
+	], 'style')
 })
 
 

@@ -8,24 +8,26 @@ html
 
 	body
 		script(src='//cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.min.js')
-		//side menu shell
+		//- side menu shell
 		include _top
-		//container
+		//- container
 		.pusher
 
-			// pushed state
+			//- pushed state
 			block main
 
 		script.
 			console.log('layout')
+			//- see https://github.com/muicss/loadjs
 			loadjs('/assets/js/setup.js')
 
-			loadjs.ready('semaB', function() {
+			loadjs.ready('style', function() {
 				$('.ui.sidebar').sidebar('attach events', '.toc.item');
-					setTimeout(function () { // ha ha !!:
-						document.getElementsByTagName('html')[0].style.visibility = 'visible'
-						console.log('style ready')
-					}, 10)
+				setTimeout(function () {
+					document.getElementsByTagName('html')[0].style.visibility = 'visible'
+					console.log('show')
+					//loadjs.done('show') //unused
+				}, 10)
 				WebFont.load({	google: {
 						families: ['Open Sans:300']
 					}

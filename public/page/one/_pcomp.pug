@@ -2,5 +2,6 @@
 p Hello Page One!
 
 script.
-	console.log('p')
-
+	loadjs.ready('style', function () {
+		console.log('page 1 component script here')
+	})
