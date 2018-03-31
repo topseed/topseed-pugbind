@@ -6,11 +6,6 @@ block head
 block main
 	p
 	.ui.text.container
-		p Hello Page One!
+		include _pcomp.pug
 
-	script.
-		TS.onAppReady(UIinit)
-		function UIinit() {
-			console.log('page 1 script')
-		}
 

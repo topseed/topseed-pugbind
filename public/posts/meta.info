@@ -1,0 +1,12 @@
+title = Oh Hi
+description = #very cool things
+feed_url = http://example.com/rss.xml
+site_url = http://example.com
+image_url= http://example.com/icon.png
+docs = http://example.com/rss/docs.html
+managingEditor = Dylan Greene
+webMaster =  Dylan Greene
+copyright = 2013 Dylan Greene
+language = en
+categories= Category 1, Category 2, Category 3
+pubDate = 12312312

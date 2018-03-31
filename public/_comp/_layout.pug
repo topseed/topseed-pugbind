@@ -18,6 +18,8 @@ html
 
 		script.
 			console.log('layout')
+			loadjs('/assets/js/setup.js')
+
 			loadjs.ready('semaB', function() {
 				$('.ui.sidebar').sidebar('attach events', '.toc.item');
 					setTimeout(function () { // ha ha !!:
