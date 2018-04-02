@@ -15,15 +15,18 @@ script.
 
 
 	loadjs.ready('lbind', function() {
-		let num = 3
-		lateBindEx('myEl1', 'myNum', num)
+
+		let someApiResult = Math.floor(Math.random() * 20)
+
+		let lbind = new Object()
+		lbind['myNum'] = someApiResult // field: value
+
+		lateBind('myEl1', lbind)
 	})
 
-	function lateBindEx(eID, field, value) { // like mustache or handlebars
+	function lateBind(eID, lbind) { // like mustache or handlebars
 		let tmpl = document.getElementById(eID)
 		let doIt = doT.template(tmpl.innerHTML)
-		let lbind = new Object()
-		lbind[field] = value
 		let res = doIt(lbind)
 		tmpl.innerHTML=res
 	}
