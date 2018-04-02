@@ -16,15 +16,15 @@ script.
 
 	loadjs.ready('lbind', function() {
 		let num = 3
-		bind('myEl1', 'myNum', num)
+		lateBindEx('myEl1', 'myNum', num)
 	})
 
 	function lateBindEx(eID, field, value) { // like mustache or handlebars
 		let tmpl = document.getElementById(eID)
 		let doIt = doT.template(tmpl.innerHTML)
-		let bind = new Object()
-		bind[field] = value
-		let res = doIt(bind)
+		let lbind = new Object()
+		lbind[field] = value
+		let res = doIt(lbind)
 		tmpl.innerHTML=res
 	}
 
