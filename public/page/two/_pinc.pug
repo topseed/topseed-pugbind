@@ -1,6 +1,6 @@
 P Page Two!
 p
-#myEl1 {{=it.myNum}}
+#myEl1 The num is {{myNum}}
 p 
 p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -15,23 +15,19 @@ script.
 
 
 	loadjs.ready('lbind', function() {
-
 		let someApiResult = Math.floor(Math.random() * 20)
-
-		let lbind = new Object()
-		lbind['myNum'] = someApiResult // field: value
-
-		lateBind('myEl1', lbind)
+		let data = {
+			'myNum': someApiResult
+		}
+		lateBind($('#myEl1'), data)
 	})
 
-	function lateBind(eID, lbind) { // like mustache or handlebars
-		let tmpl = document.getElementById(eID)
-		let doIt = doT.template(tmpl.innerHTML)
-		let res = doIt(lbind)
-		tmpl.innerHTML=res
+	function lateBind($tpl, data) {
+		let res = Mustache.render($tpl.text(), data)
+		$tpl.html(res)
 	}
 
 	loadjs.ready('site', function() {
-		loadjs([ '//cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
+		loadjs([ '//cdn.jsdelivr.net/npm/mustache@2.3.0/mustache.min.js'
 		],'lbind')
 	})
