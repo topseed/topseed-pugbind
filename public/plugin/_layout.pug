@@ -17,23 +17,20 @@ html
 			block main
 
 		script.
-			WebFontConfig = {
-				google: { families: ['Open Sans:300'] }
-				, active: function() {
-					//show
-					document.getElementsByTagName('html')[0].style.opacity = .2
-					setTimeout(function(){
-						document.getElementsByTagName('html')[0].style.opacity = 1
-						console.log('show')
-					},50)
-				}
-			}
 
 			console.log('layout')
 			//- see https://github.com/muicss/loadjs
 			loadjs('/assets/js/setup.js')
 
 			loadjs.ready('style', function() {
-				$('.ui.sidebar').sidebar('attach events', '.toc.item');
-				WebFont.load( WebFontConfig )
-			})
+
+				//show
+				document.getElementsByTagName('html')[0].style.opacity = .2
+				setTimeout(function(){
+					document.getElementsByTagName('html')[0].style.opacity = 1
+					console.log('show')
+				},50)
+				
+				$('.ui.sidebar').sidebar('attach events', '.toc.item')
+			
+			})//ready

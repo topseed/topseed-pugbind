@@ -9,7 +9,6 @@ function require(bundleIds, callbackFn) {
 	loadjs.ready(bundleIds, callbackFn)
 }
 
-
 // polyfills
 if (!window.Promise) {
 	/* load bundle 'promise' */
@@ -26,31 +25,55 @@ if (!window.fetch) {
 }
 else loadjs.done('fetch')
 
-/* load bundle 'core' */
-loadjs([
-	'//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js',
-	'//cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
-], 'core' /* bundle ID */, {
-	async: false //required due to loadjs bug with bundles
-})
-
+///////////////////////////////////////////////////////////////////////////////////
 // ready = "when done with bundle(s)"
-loadjs.ready(['core','promise','fetch'], function () {
-	window['SITE'] = new signals.Signal() //site events
-	console.log('site done')
-	loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
-})
-
-loadjs.ready('site', function() {
-	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css',
-	'//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js',
-	'//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-	], 'style', {
+loadjs.ready(['promise','fetch'], function () {
+	/* load bundle 'core' */
+	loadjs([
+		'//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js'
+		,'//cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
+		,'//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+		//, '//cdn.jsdelivr.net/npm/riot@3.9.1/riot.js'
+	], 'core' /* bundle ID */, {
 		async: false //required due to loadjs bug with bundles
 	})
 })
 
+loadjs.ready(['core'], function () {
+	WebFont.load( WebFontConfig )
+})
 
-/*window.addEventListener('pageshow', function(event) {
-	console.log('pageshow:', event.timeStamp)
-})*/
+WebFontConfig = {
+	google: { families: ['Open Sans:300'] }
+	, active: function() {
+		loadjs.done('font') // font is active
+	}
+}
+
+loadjs.ready(['core'], function () {
+	//window['SITE'] = new signals.Signal() //site events
+	loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
+})
+
+loadjs.ready('site', function() {
+	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css'
+	,'//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js'
+	], 'css', {
+		async: false //required due to loadjs bug with bundles
+	})
+})
+
+loadjs.ready(['css','font'], function () {
+	loadjs.done('style') 
+})
+
+// usage: ////////////////////////////////////////////////////////////////////
+loadjs.ready(['core'], function () {// load data
+	console.log('core done')
+})
+loadjs.ready(['site'], function () {// do nav, signal is ready
+	console.log('site done')
+})
+loadjs.ready(['style'], function () {// 'show' page, ex: unhide
+	console.log('style done')
+})
