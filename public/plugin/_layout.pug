@@ -4,7 +4,7 @@ html
 		include _header
 		block head
 		style.
-			html { visibility: hidden; }
+			html { opacity: 0.06; }
 
 	body
 		script(src='//cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.min.js')
@@ -17,19 +17,23 @@ html
 			block main
 
 		script.
+			WebFontConfig = {
+				google: { families: ['Open Sans:300'] }
+				, active: function() {
+					//show
+					document.getElementsByTagName('html')[0].style.opacity = .2
+					setTimeout(function(){
+						document.getElementsByTagName('html')[0].style.opacity = 1
+						console.log('show')
+					},50)
+				}
+			}
+
 			console.log('layout')
 			//- see https://github.com/muicss/loadjs
 			loadjs('/assets/js/setup.js')
 
 			loadjs.ready('style', function() {
 				$('.ui.sidebar').sidebar('attach events', '.toc.item');
-				setTimeout(function () {
-					document.getElementsByTagName('html')[0].style.visibility = 'visible'
-					console.log('show')
-					//loadjs.done('show') //unused
-				}, 10)
-				WebFont.load({	google: {
-						families: ['Open Sans:300']
-					}
-				})
+				WebFont.load( WebFontConfig )
 			})

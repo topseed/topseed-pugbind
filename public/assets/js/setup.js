@@ -13,12 +13,16 @@ function require(bundleIds, callbackFn) {
 // polyfills
 if (!window.Promise) {
 	/* load bundle 'promise' */
-	loadjs(['//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'], 'promise')
+	loadjs(['//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'], 'promise', {
+		async: false //required due to loadjs bug with bundles
+	})
 }
 else loadjs.done('promise') /* we already have it */
 
 if (!window.fetch) {
-	loadjs(['//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'], 'fetch')
+	loadjs(['//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'], 'fetch', {
+		async: false //required due to loadjs bug with bundles
+	})
 }
 else loadjs.done('fetch')
 
@@ -41,8 +45,12 @@ loadjs.ready('site', function() {
 	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css',
 	'//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js',
 	'//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-	], 'style')
+	], 'style', {
+		async: false //required due to loadjs bug with bundles
+	})
 })
 
 
-console.log('setup v1.04.01')
+/*window.addEventListener('pageshow', function(event) {
+	console.log('pageshow:', event.timeStamp)
+})*/
