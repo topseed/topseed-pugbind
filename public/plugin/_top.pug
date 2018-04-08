@@ -1,3 +1,5 @@
+
+//side
 .ui.fixed.vertical.inverted.sidebar.menu
 	a.active.item(href='/page/one') 
 		i.left.icon.star
@@ -6,6 +8,7 @@
 		i.left.icon.book
 		| Two
 
+//top
 .ui.fixed.inverted.menu
 	.ui.container
 		a.toc.item
@@ -17,3 +20,22 @@
 		a.item.computer_only(href='/page/two') Two
 	.right.menu
 		a.item(href='https://github.com/topseed/topseed-hello') Git
+
+style.
+	* {
+		letter-spacing: .05em !important;
+	}
+
+	.ui.menu {
+		height: 3.5em !important;
+	}
+
+	.pusher {
+		margin-top: 3.5em;
+	}
+
+	@media only screen and (min-width: 1281px) {
+		.toc.item {
+			display: none !important;
+		}
+	}
