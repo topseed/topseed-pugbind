@@ -39,10 +39,6 @@ loadjs.ready(['promise','fetch'], function () {
 	})
 })
 
-loadjs.ready(['core'], function () {
-	WebFont.load( WebFontConfig )
-})
-
 WebFontConfig = {
 	google: { families: ['Open Sans:300'] }
 	, active: function() {
@@ -51,19 +47,22 @@ WebFontConfig = {
 }
 
 loadjs.ready(['core'], function () {
+	WebFont.load( WebFontConfig )
 	//window['SITE'] = new signals.Signal() //site events
 	loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
-})
 
-loadjs.ready('site', function() {
-	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.css'
-	,'//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js'
-	], 'css', {
+	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js'
+	], 'cssJs', {
 		async: false //required due to loadjs bug with bundles
 	})
 })
 
-loadjs.ready(['css','font'], function () {
+function cssLoaded() {// called by the style sheet in layout
+	console.log('css done')
+	loadjs.done('css') 
+}
+
+loadjs.ready(['css', 'cssJs', 'font'], function () {
 	loadjs.done('style') 
 })
 
@@ -71,9 +70,10 @@ loadjs.ready(['css','font'], function () {
 loadjs.ready(['core'], function () {// load data
 	console.log('core done')
 })
-loadjs.ready(['site'], function () {// do nav, signal is ready
+loadjs.ready(['site'], function () {// do nav, signal is ready, but not style
 	console.log('site done')
 })
 loadjs.ready(['style'], function () {// 'show' page, ex: unhide
 	console.log('style done')
 })
+
