@@ -39,21 +39,12 @@ loadjs.ready(['promise','fetch'], function () {
 	})
 })
 
-WebFontConfig = {
-	google: { families: ['Open Sans:300'] }
-	, active: function() {
-		loadjs.done('font') // font is active
-	}
-}
-
 loadjs.ready(['core'], function () {
-	WebFont.load( WebFontConfig )
 	//window['SITE'] = new signals.Signal() //site events
 	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js'
 	], 'cssJs', {
 		async: false //required due to loadjs bug with bundles
 	})
-
 	setTimeout(function(){
 		loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
 	}, 1)
@@ -64,7 +55,7 @@ function cssLoaded() {// called by the style sheet in layout
 	loadjs.done('css') 
 }
 
-loadjs.ready(['css', 'cssJs', 'font'], function () {
+loadjs.ready(['css', 'cssJs'], function () {
 	loadjs.done('style') 
 })
 
