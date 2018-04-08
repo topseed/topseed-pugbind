@@ -54,7 +54,9 @@ loadjs.ready(['core'], function () {
 		async: false //required due to loadjs bug with bundles
 	})
 
-	loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
+	setTimeout(function(){
+		loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
+	}, 1)
 })
 
 function cssLoaded() {// called by the style sheet in layout
