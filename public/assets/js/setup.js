@@ -49,12 +49,12 @@ WebFontConfig = {
 loadjs.ready(['core'], function () {
 	WebFont.load( WebFontConfig )
 	//window['SITE'] = new signals.Signal() //site events
-	loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
-
 	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js'
 	], 'cssJs', {
 		async: false //required due to loadjs bug with bundles
 	})
+
+	loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
 })
 
 function cssLoaded() {// called by the style sheet in layout
