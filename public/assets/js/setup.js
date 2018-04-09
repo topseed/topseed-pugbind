@@ -48,7 +48,7 @@ loadjs.ready(['core', 'domReady'], function () {
 	setTimeout(function(){
 		$( document ).ready(function() {
 			loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
-		}
+		})
 	}, 1)
 })
 
