@@ -39,14 +39,16 @@ loadjs.ready(['promise','fetch'], function () {
 	})
 })
 
-loadjs.ready(['core'], function () {
+loadjs.ready(['core', 'domReady'], function () {
 	//window['SITE'] = new signals.Signal() //site events
 	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js'
 	], 'cssJs', {
 		async: false //required due to loadjs bug with bundles
 	})
 	setTimeout(function(){
-		loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
+		$( document ).ready(function() {
+			loadjs.done('site') // "done with bundle 'site'", need this because we're not loading js here
+		}
 	}, 1)
 })
 
