@@ -49,22 +49,24 @@ loadjs.ready(['core'], function () {
 })//()
 
 function cssLoaded() {// called by the style sheet in layout
-	console.log('css done')
+	console.log('css loaded', Date.now()-_start)
 	loadjs.done('css')
 }
 
 loadjs.ready(['css', 'cssJs', 'site'], function () {
-	loadjs.done('style')
+	setTimeout(function(){
+		loadjs.done('style')
+	},1)
 })
 
 // usage: ////////////////////////////////////////////////////////////////////
 loadjs.ready(['core'], function () {// load data
-	console.log('core done')
+	console.log('core done', Date.now()-_start)
 })
 loadjs.ready(['site'], function () {// do nav, signal is ready, but not style
-	console.log('site done')
+	console.log('site done', Date.now()-_start)
 })
 loadjs.ready(['style'], function () {// 'show' page, ex: unhide
-	console.log('style done')
+	console.log('style done', Date.now()-_start)
 })
 
