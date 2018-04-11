@@ -23,4 +23,6 @@ This function can be used to generate HTML fromJavaScript, e.g.:
 var html = pincTemplate(data)
 $('.ui.text.container').html(html)  //jQuery
 
+'data' is any object with attributes, e.g. JSON objects.
+
 See usage at public/page/two/index.pug
