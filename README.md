@@ -21,7 +21,7 @@ This generates pinc.js, which will contain:
 This function can be used to generate HTML from JavaScript, e.g.:
 
 `var html = pincTemplate(data)`
-`$('.ui.text.container').html(html)  //jQuery`
+`$('.ui.text.container').html(html)  //add to DOM, here using jQuery`
 
 'data' is any object with attributes, e.g. JSON objects.
 
