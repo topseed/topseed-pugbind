@@ -3,7 +3,7 @@ This project demonstrates client-side databinding with Pug.
 
 Install with:
 
-`npm install pug-cli -g`
+`npm install pug-cli -g
 
 We use a commandline to convert a pug fragment into a javascript template
 that can be used client-side.
@@ -20,9 +20,9 @@ This generates pinc.js, which will contain:
 
 This function can be used to generate HTML from JavaScript, e.g.:
 
-`var html = pincTemplate(data)'
+`var html = pincTemplate(data)`
 <br>
-'$('.ui.text.container').html(html)  //add to DOM, here using jQuery'
+`$('.ui.text.container').html(html)  //add to DOM, here using jQuery`
 
 'data' is any object with properties, e.g. JSON objects.
 
