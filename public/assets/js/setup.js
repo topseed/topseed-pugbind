@@ -39,7 +39,7 @@ loadjs.ready(['promise','fetch'], function () {
 })
 loadjs.ready(['core'], function () {
 	//window['SITE'] = new signals.Signal() //site events
-	loadjs([ '//cdn.jsdelivr.net/npm/semantic-ui@2.3.0/dist/semantic.js'
+	loadjs([ '/assets/Semantic-UI/dist/components/sidebar.min.js'
 		], 'cssJs', {
 		async: false //required due to loadjs bug with bundles
 	})
