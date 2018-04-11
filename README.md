@@ -18,9 +18,9 @@ This generates pinc.js, which will contain:
 
 function pincTemplate(data)
 
-This function can be used to generate HTML from javascript, e.g.
+This function can be used to generate HTML fromJavaScript, e.g.:
 
-var html = pincTemplate(data)
+var html = pincTemplate(data) //data is any object with attributes
 $('.ui.text.container').html(html)  //jQuery
 
 See usage at public/page/two/index.pug
