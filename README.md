@@ -3,12 +3,12 @@ This project demonstrates client-side databinding with Pug.
 
 Install with:
 
-`npm install pug-cli -g
+`npm install pug-cli -g`
 
 We use a commandline to convert a pug fragment into a javascript template
 that can be used client-side.
 
-See the pug fragment at /public/page/two/pinc.pug
+See the pug fragment at /public/page/two/pinc.pug.
 
 Compile it with:
 
