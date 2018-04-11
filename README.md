@@ -16,7 +16,7 @@ Compile it with:
 
 This generates pinc.js, which will contain:
 
-`function pincTemplate(data){return '...html...'}`
+`function pincTemplate(data){return '...some html...'}`
 
 This function can be used to generate HTML from JavaScript, e.g.:
 
