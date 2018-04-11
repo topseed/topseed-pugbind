@@ -7,14 +7,14 @@ block main
 	p
 	.ui.text.container
 	script.
-		loadjs('pinc.js', 'template', {async: false})
+		loadjs('pinc_p.js', 'template', {async: false})
 		
 		loadjs.ready(['site','template'], function () {
 			console.log('page 2')
 			var data = {
 				'myNum': Math.floor(Math.random() * 20)
 			}
-			//- Render the pinc.js template with data
-			//- Naming convention:  pinc.js -> pincTemplate
-			$('.ui.text.container').html(pincTemplate(data))
+			//- Render the pinc_p.js template with data
+			//- Naming convention:  pinc_p.js -> pincPTemplate
+			$('.ui.text.container').html(pincPTemplate(data))
 		})
