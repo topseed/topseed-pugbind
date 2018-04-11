@@ -26,4 +26,4 @@ This function can be used to generate HTML from JavaScript, e.g.:
 
 'data' is any object with properties, e.g. JSON objects.
 
-See usage at public/page/two/index.pug
+See usage at public/page/two/index.pug.
