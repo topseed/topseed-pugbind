@@ -20,7 +20,7 @@ function pincTemplate(data)
 
 This function can be used to generate HTML fromJavaScript, e.g.:
 
-var html = pincTemplate(data) //data is any object with attributes
+var html = pincTemplate(data)
 $('.ui.text.container').html(html)  //jQuery
 
 See usage at public/page/two/index.pug
